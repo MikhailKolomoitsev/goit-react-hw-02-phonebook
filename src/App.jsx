@@ -1,36 +1,33 @@
 import "./App.css";
 import React, { Component } from "react";
-import { v4 } from "uuid";
+import Form from "./components/Form/Form";
+import Contacts from "./components/Contacts/Contacts";
+// import { v4 as uuidv4 } from "uuid";
 
 class App extends Component {
   state = {
     contacts: [
       { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-      { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-      { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-      { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
+      { id: "id-2", name: "Aosie Simpson", number: "459-12-56" },
+      { id: "id-3", name: "Bosie Simpson", number: "459-12-56" },
+      { id: "id-4", name: "Cosie Simpson", number: "459-12-56" },
     ],
-    name: "",
   };
 
-  addContact() {
+  fomrSubmitHandler = (data) => {
+    console.log(data);
     this.setState((prevState) => ({
-      contacts: this.state.contats,
+      contacts: [...prevState.contacts, data],
     }));
-  }
+  };
 
   render() {
     return (
       <div className="App">
-        <h2>Name</h2>
-        <input
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-          required
-        />
-        <button type="button">Add contact</button>
+        <h3>Phonebook</h3>
+        <Form onSubmit={this.fomrSubmitHandler} />
+        <h3>Contacts</h3>
+        <Contacts contacts={this.state.contacts} />
       </div>
     );
   }
