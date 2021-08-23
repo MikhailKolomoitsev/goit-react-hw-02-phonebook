@@ -6,11 +6,15 @@ export class Contacts extends Component {
     contacts: [],
   };
 
-  state = { contacts: this.props.contacts };
-
   static propTypes = {
     contacts: PropTypes.array.isRequired,
-    // onClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired,
+  };
+
+  state = { contacts: this.props.contacts };
+
+  handleClick = (id) => {
+    this.props.onClick(id);
   };
 
   render() {
@@ -20,6 +24,9 @@ export class Contacts extends Component {
         {data.map((contact) => (
           <li key={contact.id}>
             {contact.name} {contact.number}
+            <button onClick={() => this.handleClick(contact.id)} type="button">
+              delete
+            </button>
           </li>
         ))}
       </ul>
