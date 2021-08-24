@@ -24,7 +24,7 @@ class App extends Component {
     filter: "",
   };
 
-  fomrSubmitHandler = (data) => {
+  formSubmitHandler = (data) => {
     const dataLowerCase = data.name.toLowerCase();
     const itemToFind = this.state.contacts.find(
       (contact) => contact.name.toLowerCase() === dataLowerCase
@@ -59,7 +59,7 @@ class App extends Component {
     return (
       <div className="App">
         <h3>Phonebook</h3>
-        <Form onSubmit={this.fomrSubmitHandler} />
+        <Form onSubmit={this.formSubmitHandler} />
         <h3>Contacts</h3>
         <p>filter via name</p>
         <Filter value={value} handler={this.handleFilter} />
