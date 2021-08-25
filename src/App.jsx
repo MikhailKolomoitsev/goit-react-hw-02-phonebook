@@ -24,6 +24,18 @@ class App extends Component {
     filter: "",
   };
 
+  componentDidMount() {
+    const contacts = localStorage.getItem("contacts");
+    const paresedContacts = JSON.parse(contacts);
+    this.setState({ contacts: paresedContacts });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+    }
+  }
+
   formSubmitHandler = (data) => {
     const dataLowerCase = data.name.toLowerCase();
     const itemToFind = this.state.contacts.find(
